@@ -42,7 +42,6 @@ def getData(start):
 			addToData('close_best_ask', 12)
 			print('%d %d %d is loaded' %(day.year, day.month, day.day))
 		except Exception as e:
-			#print(e)
 			print('stock market is not open on %d %d %d' %(day.year, day.month, day.day))
 
 		day += interval
@@ -52,12 +51,12 @@ def getData(start):
 	return df
 
 df = getData([1998, 7, 21])
-# print(df[['date', 'open', 'close', 'volume']])
 
+# 存成pickle檔以便於讀寫
 with open('TWfuture.pickle', 'wb') as f:
 	pickle.dump(df, f)
 
 pickle_in = open('TWfuture.pickle', 'rb')
 df = pickle.load(pickle_in)
 
-print(df.tail())
+print(df)
